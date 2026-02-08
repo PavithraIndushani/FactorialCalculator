@@ -11,4 +11,5 @@ public void saveToDatabase() {
 public void sendEmailNotification() {
 // Code to send email notification to the customer
 }
+
 }
