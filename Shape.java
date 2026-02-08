@@ -6,6 +6,7 @@ class Rectangle implements Shape {
 public void draw() {
 // Code to draw a rectangle
 }
+
 }
 class Circle implements Shape {
 @Override
