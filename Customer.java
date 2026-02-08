@@ -8,6 +8,7 @@ this.email = email;
 public void saveToDatabase() {
 // Code to save customer data to the database
 }
+
 public void sendEmailNotification() {
 // Code to send email notification to the customer
 }
