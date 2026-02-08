@@ -3,6 +3,7 @@ void print();
 void scan();
 void fax();
 }
+
 class SimplePrinter implements Document {
 @Override
 public void print() {
