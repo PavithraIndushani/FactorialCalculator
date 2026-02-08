@@ -13,4 +13,5 @@ int result = factorial(number);
 System.out.println("Factorial of " + number + " is: " +
 result);
 }
+
 }
