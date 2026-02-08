@@ -3,6 +3,7 @@ public static int calculateFactorial(int number) {
 if (number < 0) {
 throw new IllegalArgumentException("Factorial is not defined fornegative numbers");
 }
+
 int factorialResult = 1;
 for (int i = 1; i <= number; i++) {
 factorialResult *= i;
