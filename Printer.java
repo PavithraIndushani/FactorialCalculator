@@ -27,4 +27,5 @@ public void scan() {
 public void fax() {
 // Fax the document
 }
+
 }
