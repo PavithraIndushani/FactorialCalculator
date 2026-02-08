@@ -15,4 +15,5 @@ int number = 5;
 int result = calculateFactorial(number);
 System.out.println("Factorial of " + number + " is: " + result);
 }
+
 } 
