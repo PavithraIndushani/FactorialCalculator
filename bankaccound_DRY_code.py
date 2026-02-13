@@ -12,6 +12,7 @@ Account Name : {self.account_name}
 Account Type : {self.account_type}
 Balance      : {self.balance}
 """)
+        
 
     def withdraw(self, amount):
         if self.account_type not in ["SAVING", "CURRENT"]:
