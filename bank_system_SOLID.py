@@ -1,51 +1,56 @@
-def show_account(account_no, account_name, account_type, balance):
-    print("\n------ Account Details ------")
-    print(f"Account No   : {account_no}")
-    print(f"Account Name : {account_name}")
-    print(f"Account Type : {account_type}")
-    print(f"Balance      : {balance:.2f}")
+class Account:
+    MIN_SAVING_BALANCE = 500
+
+    def __init__(self, account_no, name, account_type, balance):
+        self.account_no = account_no
+        self.name = name
+        self.account_type = account_type.upper()
+        self.balance = balance
+
+    def show_account(self):
+        print("\n--- Account Details ---")
+        print(f"Account No   : {self.account_no}")
+        print(f"Account Name : {self.name}")
+        print(f"Account Type : {self.account_type}")
+        print(f"Balance      : {self.balance}")
+
+    def withdraw(self, amount):
+        if amount <= 0:
+            raise ValueError("Withdrawal amount must be positive")
+
+        if self.account_type == "SAVING":
+            self._withdraw_saving(amount)
+        elif self.account_type == "CURRENT":
+            self._withdraw_current(amount)
+        else:
+            raise ValueError("Invalid Account Type! Use SAVING or CURRENT")
+
+    def _withdraw_saving(self, amount):
+        if self.balance - amount < self.MIN_SAVING_BALANCE:
+            raise Exception("Insufficient funds! Minimum balance must be 500")
+        self.balance -= amount
+
+    def _withdraw_current(self, amount):
+        self.balance -= amount
 
 
-def withdraw(account_type, balance, amount):
-    if amount <= 0:
-        raise ValueError("Withdrawal amount must be greater than 0.")
+# ---------------- MAIN PROGRAM ----------------
 
-    account_type = account_type.upper()
+try:
+    account_no = input("Enter Account Number: ")
+    name = input("Enter Customer Name: ")
+    account_type = input("Enter Account Type (SAVING/CURRENT): ")
+    balance = float(input("Enter Balance: "))
 
-    if account_type == "SAVING":
-        if balance - amount < 500:
-            raise ValueError("Insufficient funds! Minimum balance of 500 required for SAVING account.")
-        return balance - amount
+    account = Account(account_no, name, account_type, balance)
 
-    elif account_type == "CURRENT":
-        return balance - amount
+    account.show_account()
 
-    else:
-        raise ValueError("Invalid account type! Please enter SAVING or CURRENT.")
+    amount = float(input("\nEnter Amount to Withdraw: "))
+    account.withdraw(amount)
 
+    print("\nAfter Withdrawal:")
+    account.show_account()
 
-def main():
-    
-    try:
-        account_no = input("Enter Account Number : ")
-        account_name = input("Enter Customer Name : ")
-        account_type = input("Enter Account Type (SAVING/CURRENT) : ")
-        balance = float(input("Enter Balance : "))
-
-        show_account(account_no, account_name, account_type, balance)
-
-        amount = float(input("\nEnter Amount to Withdraw : "))
-        balance = withdraw(account_type, balance, amount)
-
-        print("\nWithdrawal Successful!")
-        print(f"Updated Balance : {balance:.2f}")
-
-    except ValueError as ve:
-        print("Error:", ve)
-
-    except Exception as e:
-        print("Unexpected Error:", e)
-
-
-if __name__ == "__main__":
-    main()
+except Exception as e:
+    print("Error:", e)
